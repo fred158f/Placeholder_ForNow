@@ -1,5 +1,6 @@
 ﻿using APL_MVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System.Diagnostics;
 
 namespace APL_MVC.Controllers
@@ -27,6 +28,11 @@ namespace APL_MVC.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult Measurements()
+        {
+            return View();
         }
     }
 }

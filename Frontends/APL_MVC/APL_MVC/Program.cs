@@ -1,3 +1,6 @@
+using AIL.idh.sql.Contexts;
+using Microsoft.EntityFrameworkCore;
+
 namespace APL_MVC
 {
     public class Program
@@ -8,6 +11,9 @@ namespace APL_MVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            string connectionStringPath = builder.Configuration.GetConnectionString("DefaultConnection");
+            builder.Services.AddDbContext<DataSourceContext>(options => options.UseSqlServer(connectionStringPath));
 
             var app = builder.Build();
 

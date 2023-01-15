@@ -1,4 +1,7 @@
+using ADL.Interfaces.db_Specific;
+using ADL.Models.db_Models;
 using AIL.idh.sql.Contexts;
+using AIL.idh.sql.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace APL_MVC
@@ -15,6 +18,9 @@ namespace APL_MVC
             string connectionStringPath = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<DataSourceContext>(options => options.UseSqlServer(connectionStringPath));
 
+            builder.Services.AddTransient<IRepository<MeasurementType>, MeasurementTypeRepository>();
+            builder.Services.AddTransient<IRepository<MeasurementSource>, MeasurementSourceRepository>();
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

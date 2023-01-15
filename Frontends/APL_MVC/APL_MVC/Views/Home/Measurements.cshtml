@@ -1,17 +1,56 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<PDL.Viewmodels.MeasurementSourceViewModel>
+
 @{
     ViewData["Title"] = "Measurements";
 }
 
-<div>
+<!--div>
     <canvas id="myChart"></canvas>
+</!--div-->
+
+<div class="container">
+    <div class="row">
+        <table class="table-bordered table-primary m-1">
+            @{
+                if (Model != null && Model.Count > 0)
+                {
+                    <tr class="btn-secondary">
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Value
+                        </th>
+                        <th>
+                            Unit
+                        </th>
+                    </tr>
+                    foreach (var a in Model)
+                    {
+                        <tr>
+                            <td>
+                                @a.Name
+                            </td>
+                            <td>
+                                15.2
+                            </td>
+                            <td>
+                                @a.SourceType.Unit
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </table>
+        <a asp-action="MeasurementsAdd" class="btn btn-primary m-1">Create</a>
+    </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script>
+
+
+<!--script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     const ctx = document.getElementById('myChart');
 
     new Chart(ctx, {
@@ -35,4 +74,4 @@
         }
       }
     });
-</script>
+</script-->

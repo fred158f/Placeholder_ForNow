@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="idh\sql\Repositories\" />
     <Folder Include="itb\" />
   </ItemGroup>
 

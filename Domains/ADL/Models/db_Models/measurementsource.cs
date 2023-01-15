@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ADL.Models.db_Models.Interfaces
+namespace ADL.Models.db_Models
 {
     public class MeasurementSource
     {
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
 

@@ -25,10 +25,7 @@ namespace AIL.Migrations
             modelBuilder.Entity("ADL.Models.db_Models.Interfaces.MeasurementSource", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -40,12 +37,7 @@ namespace AIL.Migrations
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("rowversion");
 
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("TypeId");
 
                     b.ToTable("Source");
                 });
@@ -80,12 +72,17 @@ namespace AIL.Migrations
             modelBuilder.Entity("ADL.Models.db_Models.Interfaces.MeasurementSource", b =>
                 {
                     b.HasOne("ADL.Models.db_Models.Interfaces.MeasurementType", "Type")
-                        .WithMany()
-                        .HasForeignKey("TypeId")
+                        .WithOne("ParentSource")
+                        .HasForeignKey("ADL.Models.db_Models.Interfaces.MeasurementSource", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Type");
+                });
+
+            modelBuilder.Entity("ADL.Models.db_Models.Interfaces.MeasurementType", b =>
+                {
+                    b.Navigation("ParentSource");
                 });
 #pragma warning restore 612, 618
         }
